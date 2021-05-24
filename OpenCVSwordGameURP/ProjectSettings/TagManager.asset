@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Floor
+  - Sword Grabber
   layers:
   - Default
   - TransparentFX
@@ -16,12 +17,12 @@ TagManager:
   - Floor
   - Sword Triggers
   - Sword Colliders
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Sliceable
+  - Not Sliceable
+  - Water Shader
+  - Sword Container
+  - Sword Joint Cube
+  - Sliceable Bomb
   - 
   - 
   - 

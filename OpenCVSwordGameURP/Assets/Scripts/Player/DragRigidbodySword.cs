@@ -4,7 +4,7 @@ public class DragRigidbodySword : MonoBehaviour
 {
     public float forceAmount = 500;
 
-    private Rigidbody selectedRigidbody;
+    public Rigidbody selectedRigidbody;
     public Vector3 desiredPosition;
     public Vector2 screenSize;
 
@@ -39,9 +39,6 @@ public class DragRigidbodySword : MonoBehaviour
         screenSize.y = Screen.height;
         screenSize.x = Screen.width;
 
-        //if(!getPositionFromCamera)
-        //    desiredPosition = Input.mousePosition;
-
         desiredPosition = !getPositionFromCamera ? Input.mousePosition : trackerPosition;
 
         if (!targetcamera)
@@ -52,6 +49,27 @@ public class DragRigidbodySword : MonoBehaviour
             // Grab
             isRigidbodySelected = true;
             selectedRigidbody = GetRigidbodyFromMouseClick();
+
+            if (selectedRigidbody == null)
+            {
+                isRigidbodySelected = false;
+                Debug.Log("This GameObject has no Rigidbody");
+            }
+            else
+            {
+                if (selectedRigidbody.GetComponent<SwordManager>() != null)
+                {
+                    Debug.Log("SWORD");
+                    Debug.Log(selectedRigidbody.name);
+                    selectedRigidbody.GetComponent<SwordManager>().SwordSelected();
+                }
+                else
+                {
+                    Debug.Log("This is not a Sword");
+                    selectedRigidbody = null;
+                    isRigidbodySelected = false;
+                }
+            }
         }
     }
 
