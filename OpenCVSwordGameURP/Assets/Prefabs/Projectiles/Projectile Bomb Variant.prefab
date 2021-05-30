@@ -28,6 +28,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587108f82f5e1ce4d844c8be30e90441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 2460114348437178403, guid: fc52eaf084541b04d86e1a9fb48d83d9, type: 3}
   radius: 10
   power: 3500
   objectsAffectedByExplosion:

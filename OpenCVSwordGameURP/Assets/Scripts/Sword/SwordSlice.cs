@@ -20,6 +20,8 @@ public class SwordSlice : MonoBehaviour
 
     public Material destroyMaterial;
 
+    public GameObject sparkParticlesPrefab;
+
     private void Start()
     {
         previousTipPosition = bladeTip.transform.position;
@@ -67,7 +69,10 @@ public class SwordSlice : MonoBehaviour
             plane = plane.flipped;
         }
 
-        GameObject[] slices = Slicer.Slice(plane, other.gameObject, destroyMaterial);
+        GameObject[] slices = Slicer.Slice(plane, other.gameObject, destroyMaterial, ref sparkParticlesPrefab);
+
+        other.GetComponent<IProjectile>()?.Explode();
+
         Destroy(other.gameObject);
 
         /////Effects/////

@@ -48,6 +48,8 @@ public class UdpManager : MonoBehaviour, ISocket
             Debug.Log("Instance already exists, destroying object!");
             Destroy(this);
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()

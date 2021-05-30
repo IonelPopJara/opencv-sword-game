@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     public Vector3 randomDir;
 
+    public SwordSoundsManager swordSounds;
+    public AudioSource fallingSource;
+
     private void Start()
     {
         isGrounded = true;
@@ -39,10 +42,13 @@ public class PlayerController : MonoBehaviour
 
         if(!isGrounded && !playerLoose)
         {
+            swordSounds.haveLost = true;
             playerLoose = true;
             Rigidbody rb = GetComponent<Rigidbody>();
             rb.freezeRotation = false;
             OnLooseRotate();
+            fallingSource.Play();
+            FindObjectOfType<GameManager>().GameOver();
         }
     }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TimeFlowManager : MonoBehaviour
 {
+    public GameManager gameManager;
+
     public bool stopping;
     public float stopTime;
     public float slowTime;
@@ -25,12 +27,13 @@ public class TimeFlowManager : MonoBehaviour
             stopping = true;
             Time.timeScale = 0;
 
-            StartCoroutine("Stop");
+            StartCoroutine(nameof(Stop));
         }
     }
 
     private void Update()
     {
+        if (gameManager.isGamePaused) return;
         Time.timeScale += (1f / slowTime) * Time.unscaledDeltaTime;
         Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
     }
@@ -48,7 +51,9 @@ public class TimeFlowManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(rb.velocity.magnitude > velocityThreshold)
+        if (gameManager.isGamePaused) return;
+
+        if (rb.velocity.magnitude > velocityThreshold)
             TimeStop();
     }
 }

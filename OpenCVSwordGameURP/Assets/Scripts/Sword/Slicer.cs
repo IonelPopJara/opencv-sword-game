@@ -7,7 +7,7 @@ namespace ExtraScripts
 {
     class Slicer
     {
-        public static GameObject[] Slice(Plane plane, GameObject objectToCut, Material destroyMaterial)
+        public static GameObject[] Slice(Plane plane, GameObject objectToCut, Material destroyMaterial, ref GameObject sliceParticles)
         {
             // Get the current mesh and its verts and tris
             Mesh mesh = objectToCut.GetComponent<MeshFilter>().mesh;
@@ -39,8 +39,8 @@ namespace ExtraScripts
             negativeObject.GetComponent<MeshFilter>().mesh = negativeSideMeshData;
 
 
-            SetupCollidersAndRigidbodies(ref positiveObject, positiveSideMeshData, sliceable.UseGravity);
-            SetupCollidersAndRigidbodies(ref negativeObject, negativeSideMeshData, sliceable.UseGravity);
+            SetupCollidersAndRigidbodies(ref positiveObject, positiveSideMeshData, sliceable.UseGravity, ref sliceParticles);
+            SetupCollidersAndRigidbodies(ref negativeObject, negativeSideMeshData, sliceable.UseGravity, ref sliceParticles);
 
             return new GameObject[] { positiveObject, negativeObject };
         }
@@ -72,7 +72,7 @@ namespace ExtraScripts
             return meshGameObject;
         }
 
-        private static void SetupCollidersAndRigidbodies(ref GameObject gameObject, Mesh mesh, bool useGravity)
+        private static void SetupCollidersAndRigidbodies(ref GameObject gameObject, Mesh mesh, bool useGravity, ref GameObject sparkParticles)
         {
             MeshCollider meshCollider = gameObject.AddComponent<MeshCollider>();
             meshCollider.sharedMesh = mesh;
@@ -88,6 +88,9 @@ namespace ExtraScripts
 
             // Add the component to dissolve over time
             gameObject.AddComponent<DissolveTime>();
+
+            SliceProjectile projectile = gameObject.AddComponent<SliceProjectile>();
+            projectile.explosionParticles = sparkParticles;
         }
     }
 }
