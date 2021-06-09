@@ -7,6 +7,13 @@ using System.Collections.Generic;
  * Send a signal to the cannon to fire after a dequeue
  */
 
+public enum ProjectileType
+{
+    SLICEABLE,
+    NONSLICEABLE,
+    BOMB
+}
+
 [System.Serializable]
 public class ProjectileData
 {
@@ -15,12 +22,6 @@ public class ProjectileData
     public ProjectileType pType;
 }
 
-public enum ProjectileType
-{
-    SLICEABLE,
-    NONSLICEABLE,
-    BOMB
-}
 public class Cannon : MonoBehaviour
 {
     public GameObject[] bulletTypes;
@@ -39,7 +40,7 @@ public class Cannon : MonoBehaviour
     {
         ProjectilesQueue = new Queue<ProjectileData>();
 
-        // Fill the queue
+        // Fill in the queue
         foreach (var projectile in ProjectilesData)
         {
             ProjectilesQueue.Enqueue(projectile);

@@ -121,4 +121,9 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Main Menu");
         }
     }
+
+    public void ReloadCurrentScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
