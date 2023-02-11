@@ -5,3 +5,11 @@ A small prototype inspired by Wii Sports Resorts's Sword Game and developed in U
 If you would like to check a preview of the project, you can watch [this video here](https://youtu.be/l1oq7TMTVK0).
 
 ## Screenshots
+
+<p aling='center'><img src='resources\sc-1.png'></p>
+
+<p aling='center'><img src='resources\sc-2.png'></p>
+
+<p aling='center'><img src='resources\sc-3.png'></p>
+
+<p aling='center'><img src='resources\sc-4.png'></p>
